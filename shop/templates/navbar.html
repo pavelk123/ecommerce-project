@@ -26,6 +26,24 @@
 				  <li class="nav-item px-3">
 				    <a class="nav-link text-uppercase font-weight-bold" href="#">About</a>
 				  </li>
+				  {% if request.user.is_authenticated and request.user.first_name %}
+				  <li class="nav-item px-3">
+				    <span class="nav-link text-uppercase font-weight-bold" >Welcome, {{request.user.first_name }}<i class="material-icons cart-icon">account_circle</i></span>
+				  </li>				  
+
+				  <li class="nav-item px-3">
+				    <a href="{% url 'logout' %}" class="nav-link text-uppercase font-weight-bold" >Sign out<i class="material-icons cart-icon" href="">exit_to_app</i></a>
+				  </li>	
+				  {% else %}		
+				  <li class="nav-item px-3">
+				    <a href="{% url 'signup' %}" class="nav-link text-uppercase font-weight-bold" >Sign Up<i class="material-icons cart-icon" >add</i></a>
+				  </li>	
+				  <li class="nav-item px-3">
+				    <a href="{% url 'login' %}" class="nav-link text-uppercase font-weight-bold" >Log in<i class="material-icons cart-icon" >login</i></a>
+				  </li>	
+
+
+				  {% endif %}
 				  <li class="nav-item px-3">
 				    <a class="nav-link text-uppercase font-weight-bold" href="{% url 'cart_detail' %}"><i class="material-icons cart-icon">shopping_cart</i>({{item_count}})</a>
 				  </li>
